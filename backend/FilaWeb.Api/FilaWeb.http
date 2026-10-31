@@ -1,0 +1,37 @@
+### Requisições de exemplo.
+### No Visual Studio 2022 ou VS Code (extensão "REST Client"), clique em "Send Request" acima de cada bloco.
+### A API precisa estar rodando em http://localhost:5000 (dotnet run).
+
+@host = http://localhost:5000
+@chave = chave-local-de-teste
+
+### Verifica se a API está no ar
+GET {{host}}/
+
+### Entrar na fila (é o que a tela de cadastro envia)
+POST {{host}}/api/fila
+Content-Type: application/json
+
+{
+  "nome": "Maria da Silva",
+  "dataNascimento": "1990-05-21",
+  "cpf": "52998224725",
+  "telefone": "16912345678",
+  "motivo": "sintomas"
+}
+
+### Ver a posição na fila (troque o id pelo "id" devolvido no cadastro)
+GET {{host}}/api/fila/COLE-O-ID-AQUI
+
+### Desistir da vaga (troque o id)
+POST {{host}}/api/fila/COLE-O-ID-AQUI/cancelar
+
+### --- Área da equipe da UPA (precisa do cabeçalho X-Api-Key) ---
+
+### Lista de quem aguarda
+GET {{host}}/api/atendimento/fila
+X-Api-Key: {{chave}}
+
+### Chamar o próximo da fila
+POST {{host}}/api/atendimento/proximo
+X-Api-Key: {{chave}}

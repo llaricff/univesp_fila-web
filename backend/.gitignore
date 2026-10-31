@@ -1,0 +1,6 @@
+bin/
+obj/
+.vs/
+*.user
+# Dados de teste gerados pela API (contêm dados pessoais: nunca versionar)
+data/
